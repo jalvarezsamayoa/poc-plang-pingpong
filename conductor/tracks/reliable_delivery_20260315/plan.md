@@ -1,10 +1,10 @@
 # Implementation Plan: Reliable Delivery Protocol
 
-## Phase 1: Environment Setup & Lossy Network
+## Phase 1: Environment Setup & Lossy Network [checkpoint: bee79f8]
 - [x] Task: Define a `LossyNetwork` machine that intercepts events between Pinger and Ponger. [254ebcf]
 - [x] Task: Add a probability factor to `LossyNetwork` to drop events. [600c933]
 - [x] Task: Update `Main` machine to route traffic through the `LossyNetwork`. [e7f59d1]
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md) [bee79f8]
 
 ## Phase 2: Reliable Protocol Logic
 - [ ] Task: Update event definitions to include sequence numbers.
