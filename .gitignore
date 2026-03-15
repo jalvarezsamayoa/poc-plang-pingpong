@@ -1,0 +1,35 @@
+# Build artifacts
+bin/
+obj/
+out/
+build/
+dist/
+
+# P compiler output
+PGenerated/
+PCheckerOutput/
+*.ll
+*.bc
+*.o
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies
+packages/
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+
