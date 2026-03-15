@@ -47,10 +47,23 @@ machine Pinger {
 
 // Define the Ponger machine - this machine responds to ping messages
 machine Ponger {
+    var expectedSid: int;
+
     // Define the initial state of the Ponger machine (marked with 'start' keyword)
     start state Wait {
+        entry {
+            expectedSid = 0;
+        }
         // Event handler: when we receive a Ping event, execute the 'do' action
         on Ping do (payload: (sender: machine, sid: int)) {
+            if (payload.sid == expectedSid) {
+                // New Ping, process it and increment expected sequence number
+                print format("Ponger: Processing new Ping({0})", payload.sid);
+                expectedSid = expectedSid + 1;
+            } else if (payload.sid < expectedSid) {
+                // Duplicate Ping, just re-acknowledge
+                print format("Ponger: Received duplicate Ping({0}), re-acknowledging", payload.sid);
+            }
             // Send a Pong event back to the machine that sent us the Ping
             send payload.sender, Pong, payload.sid;
         }
