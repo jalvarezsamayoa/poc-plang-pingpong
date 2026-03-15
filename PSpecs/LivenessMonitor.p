@@ -7,6 +7,9 @@ spec LivenessMonitor observes Ping, Pong {
             print format("TRACE: Ping({1}) from {0}", payload.sender, payload.sid);
             goto WaitingForPong;
         }
+        on Pong do (sid: int) {
+            // Ignore stale Pongs
+        }
     }
 
     // A 'hot' state means that the system is in an "incomplete" or "pending" state.

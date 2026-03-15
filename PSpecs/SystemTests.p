@@ -23,7 +23,8 @@ test DefaultTest [main = Main]: assert LivenessMonitor in {
     Main,
     Pinger,
     Ponger,
-    LossyNetwork
+    LossyNetwork,
+    Timer
 };
 
 // New test case for the network

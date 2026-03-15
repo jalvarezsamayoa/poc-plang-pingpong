@@ -8,6 +8,8 @@ event Pong: int;
 machine Pinger {
     // State machine variable: stores the identity of the Ponger machine we'll communicate with
     var ponger: machine;
+    var timer: machine;
+    var sid: int;
 
     // Define the initial state of the Pinger machine (marked with 'start' keyword)
     start state Init {
@@ -16,7 +18,8 @@ machine Pinger {
         entry (p: machine) {
             // Store the reference to the Ponger machine in our state variable
             ponger = p;
-            // Transition to PingState to start sending ping messages
+            sid = 0;
+            timer = new Timer(this);
             goto PingState;
         }
     }
@@ -25,11 +28,20 @@ machine Pinger {
     state PingState {
         // Entry action: runs when entering this state
         // Send a Ping event to the ponger machine, passing 'this' (the Pinger's identity) as the payload
-        entry { send ponger, Ping, (sender = this, sid = 0); }
-        // Event handler: when we receive a Pong event, transition back to PingState
-        on Pong do (sid: int) {
-            goto PingState;
+        entry {
+            send ponger, Ping, (sender = this, sid = sid);
+            send timer, TimerStart;
         }
+        // Event handler: when we receive a Pong event, transition back to PingState
+        on Pong do (p_sid: int) {
+            if (p_sid == sid) {
+                send timer, TimerStop;
+                sid = sid + 1;
+                goto PingState;
+            }
+        }
+        // Retransmit on timeout
+        on Timeout goto PingState;
     }
 }
 
