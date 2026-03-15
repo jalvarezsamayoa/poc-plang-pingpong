@@ -3,7 +3,7 @@
 ## Phase 1: Environment Setup & Lossy Network
 - [x] Task: Define a `LossyNetwork` machine that intercepts events between Pinger and Ponger. [254ebcf]
 - [x] Task: Add a probability factor to `LossyNetwork` to drop events. [600c933]
-- [ ] Task: Update `Main` machine to route traffic through the `LossyNetwork`.
+- [x] Task: Update `Main` machine to route traffic through the `LossyNetwork`. [e7f59d1]
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md)
 
 ## Phase 2: Reliable Protocol Logic
