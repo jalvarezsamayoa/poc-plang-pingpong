@@ -67,3 +67,14 @@ mermaid:
 		echo "Error: No trace found. Run 'make trace' or 'make check' first."; \
 		exit 1; \
 	fi
+
+## graph: Export the state machines to a Mermaid state diagram
+graph:
+	@SCI_FILE=$$(ls $(OUTPUT_DIR)/BugFinding/*.sci 2>/dev/null | head -n 1); \
+	if [ -z "$$SCI_FILE" ]; then \
+		echo "Error: No SCI file found. Run 'make check' first."; \
+		exit 1; \
+	fi; \
+	echo "==> Exporting state machines from $$SCI_FILE to Mermaid..."; \
+	python3 scripts/sci_to_mermaid.py $$SCI_FILE > PCheckerOutput/graph.mermaid; \
+	echo "Created PCheckerOutput/graph.mermaid"
