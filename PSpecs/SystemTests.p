@@ -21,3 +21,9 @@ machine Main {
         }
     }
 }
+
+// New test case for the network
+test NetworkCheck [main = TestNetwork]: {
+    TestNetwork,
+    LossyNetwork
+};

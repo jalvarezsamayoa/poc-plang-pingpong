@@ -1,6 +1,31 @@
 // LossyNetwork: Intercepts and potentially drops events between machines.
 machine LossyNetwork {
-    start state Active {
-        // Initial implementation: just a placeholder machine
+    var pinger: machine;
+    var ponger: machine;
+
+    start state Init {
+        entry (payload: (p: machine, po: machine)) {
+            pinger = payload.p;
+            ponger = payload.po;
+            goto Active;
+        }
+    }
+
+    state Active {
+        on Ping do (sender: machine) {
+            if ($) {
+                // Non-deterministically choose to forward the event
+                send ponger, Ping, sender;
+            }
+            // else: silently drop the event
+        }
+
+        on Pong do {
+            if ($) {
+                // Non-deterministically choose to forward the event
+                send pinger, Pong;
+            }
+            // else: silently drop the event
+        }
     }
 }
