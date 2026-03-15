@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md) [bee79f8]
 
 ## Phase 2: Reliable Protocol Logic
-- [~] Task: Update event definitions to include sequence numbers.
+- [x] Task: Update event definitions to include sequence numbers. [ecaf2e2]
 - [ ] Task: Implement retransmission timers in the `Pinger` machine.
 - [ ] Task: Implement acknowledgment logic in the `Ponger` machine.
 - [ ] Task: Add sequence number tracking to the `Ponger` to ignore duplicates.
