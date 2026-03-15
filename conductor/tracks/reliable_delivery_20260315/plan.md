@@ -9,8 +9,8 @@
 ## Phase 2: Reliable Protocol Logic
 - [x] Task: Update event definitions to include sequence numbers. [ecaf2e2]
 - [x] Task: Implement retransmission timers in the `Pinger` machine. [6097f25]
-- [~] Task: Implement acknowledgment logic in the `Ponger` machine.
-- [~] Task: Add sequence number tracking to the `Ponger` to ignore duplicates.
+- [x] Task: Implement acknowledgment logic in the `Ponger` machine. [ecd0ccb]
+- [x] Task: Add sequence number tracking to the `Ponger` to ignore duplicates. [ecd0ccb]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Reliable Protocol Logic' (Protocol in workflow.md)
 
 ## Phase 3: Verification & Visualization
