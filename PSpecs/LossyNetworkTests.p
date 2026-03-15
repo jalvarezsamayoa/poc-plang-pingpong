@@ -15,8 +15,9 @@ machine TestLossyNetwork {
     start state Init {
         entry {
             ponger = new DummyPonger();
-            // Pass this as pinger, and ponger as ponger using a tuple
-            network = new LossyNetwork((p = this, po = ponger));
+            // Pass this as pinger, and ponger as ponger using Config event
+            network = new LossyNetwork();
+            send network, Config, (p = this, po = ponger);
             send network, Ping, this;
             send network, Pong;
             goto CheckDrop;

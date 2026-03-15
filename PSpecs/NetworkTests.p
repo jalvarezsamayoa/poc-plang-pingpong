@@ -4,7 +4,8 @@ machine TestNetwork {
         entry {
             var network: machine;
             // Provide dummy machines (self) to satisfy initialization
-            network = new LossyNetwork((p = this, po = this));
+            network = new LossyNetwork();
+            send network, Config, (p = this, po = this);
             // This should cause an unhandled event error in LossyNetwork
             // because it has no on Ping handler yet.
             send network, Ping, this;
