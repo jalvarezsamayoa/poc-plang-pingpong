@@ -3,21 +3,21 @@
 spec LivenessMonitor observes Ping, Pong {
     // The spec starts in this state, waiting for the first Ping.
     start state WaitingForPing {
-        on Ping do (p: machine) {
-            print format("TRACE: Ping from {0}", p);
+        on Ping do (payload: (sender: machine, sid: int)) {
+            print format("TRACE: Ping({1}) from {0}", payload.sender, payload.sid);
             goto WaitingForPong;
         }
     }
 
     // A 'hot' state means that the system is in an "incomplete" or "pending" state.
     hot state WaitingForPong {
-        on Pong do {
-            print "TRACE: Pong";
+        on Pong do (sid: int) {
+            print format("TRACE: Pong({0})", sid);
             goto WaitingForPing;
         }
 
-        on Ping do (p: machine) {
-            print format("TRACE: Ping from {0}", p);
+        on Ping do (payload: (sender: machine, sid: int)) {
+            print format("TRACE: Ping({1}) from {0}", payload.sender, payload.sid);
         } 
     }
 }

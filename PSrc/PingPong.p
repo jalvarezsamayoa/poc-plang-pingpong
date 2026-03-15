@@ -1,8 +1,8 @@
 // Define events that machines can send and receive
-// Event Ping carries a payload of type 'machine' (the sender's identity)
-event Ping: machine;
-// Event Pong has no payload
-event Pong;
+// Event Ping carries a payload of a tuple with the sender's identity and a sequence number
+event Ping: (sender: machine, sid: int);
+// Event Pong now carries a sequence number as a simple int
+event Pong: int;
 
 // Define the Pinger machine - this machine sends ping messages
 machine Pinger {
@@ -25,10 +25,11 @@ machine Pinger {
     state PingState {
         // Entry action: runs when entering this state
         // Send a Ping event to the ponger machine, passing 'this' (the Pinger's identity) as the payload
-        entry { send ponger, Ping, this; }
+        entry { send ponger, Ping, (sender = this, sid = 0); }
         // Event handler: when we receive a Pong event, transition back to PingState
-        // This creates a loop: enter PingState -> send Ping -> receive Pong -> stay in PingState
-        on Pong goto PingState;
+        on Pong do (sid: int) {
+            goto PingState;
+        }
     }
 }
 
@@ -37,10 +38,9 @@ machine Ponger {
     // Define the initial state of the Ponger machine (marked with 'start' keyword)
     start state Wait {
         // Event handler: when we receive a Ping event, execute the 'do' action
-        // The payload of the Ping event (the Pinger's identity) is captured in the 'pinger' parameter
-        on Ping do (pinger: machine) {
+        on Ping do (payload: (sender: machine, sid: int)) {
             // Send a Pong event back to the machine that sent us the Ping
-            send pinger, Pong;
+            send payload.sender, Pong, payload.sid;
         }
     }
 }

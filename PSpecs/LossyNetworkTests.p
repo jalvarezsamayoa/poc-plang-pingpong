@@ -2,7 +2,7 @@
 
 machine DummyPonger {
     start state Wait {
-        on Ping do {
+        on Ping do (payload: (sender: machine, sid: int)) {
             // Drop it, we just want to see if it reaches here
         }
     }
@@ -18,8 +18,8 @@ machine TestLossyNetwork {
             // Pass this as pinger, and ponger as ponger using Config event
             network = new LossyNetwork();
             send network, Config, (p = this, po = ponger);
-            send network, Ping, this;
-            send network, Pong;
+            send network, Ping, (sender = this, sid = 0);
+            send network, Pong, 0;
             goto CheckDrop;
         }
     }
@@ -28,11 +28,11 @@ machine TestLossyNetwork {
         // If the network drops it, we won't see Ping back here.
         // If it forwards it, we would see it on DummyPonger, but we can't observe that easily from here.
         // Let's just make the test succeed if it doesn't crash.
-        on Ping do {
+        on Ping do (payload: (sender: machine, sid: int)) {
             // This is if it was sent back to us (the 'pinger')
             // But Ping is sent to ponger.
         }
-        on Pong do {
+        on Pong do (sid: int) {
             // Received Pong back from network
         }
     }

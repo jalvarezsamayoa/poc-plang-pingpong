@@ -16,18 +16,18 @@ machine LossyNetwork {
     }
 
     state Active {
-        on Ping do (sender: machine) {
+        on Ping do (payload: (sender: machine, sid: int)) {
             if ($) {
                 // Non-deterministically choose to forward the event
-                send ponger, Ping, sender;
+                send ponger, Ping, payload;
             }
             // else: silently drop the event
         }
 
-        on Pong do {
+        on Pong do (sid: int) {
             if ($) {
                 // Non-deterministically choose to forward the event
-                send pinger, Pong;
+                send pinger, Pong, sid;
             }
             // else: silently drop the event
         }

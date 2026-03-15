@@ -8,9 +8,9 @@ machine TestNetwork {
             send network, Config, (p = this, po = this);
             // This should cause an unhandled event error in LossyNetwork
             // because it has no on Ping handler yet.
-            send network, Ping, this;
+            send network, Ping, (sender = this, sid = 0);
         }
-        on Ping do {
+        on Ping do (payload: (sender: machine, sid: int)) {
             // Received Ping back from network (if not dropped)
         }
     }
