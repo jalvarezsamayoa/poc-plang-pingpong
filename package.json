@@ -1,0 +1,21 @@
+{
+  "name": "ppingpong",
+  "version": "1.0.0",
+  "description": "PingPong implemented in P with XState visualization support",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "make compile",
+    "check": "make check",
+    "viz": "make compile-viz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xstate": "^4.38.2"
+  },
+  "devDependencies": {
+    "@xstate/inspect": "^0.8.0"
+  }
+}

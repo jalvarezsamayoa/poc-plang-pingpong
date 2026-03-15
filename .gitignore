@@ -24,6 +24,7 @@ PCheckerOutput/
 # Dependencies
 packages/
 node_modules/
+PGenerated/Stately/
 
 # Logs
 *.log

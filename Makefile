@@ -14,7 +14,7 @@ OUTPUT_DIR = PCheckerOutput
 # Tools
 P_TOOL = p
 
-.PHONY: all compile check clean help
+.PHONY: all compile check clean help setup
 
 all: compile check
 
@@ -78,3 +78,20 @@ graph:
 	echo "==> Exporting state machines from $$SCI_FILE to Mermaid..."; \
 	python3 scripts/sci_to_mermaid.py $$SCI_FILE > PCheckerOutput/graph.mermaid; \
 	echo "Created PCheckerOutput/graph.mermaid"
+
+## compile-viz: Compile the project in stately mode to generate the visualization JSON (via npm)
+compile-viz:
+	@echo "==> Compiling for visualization..."
+	npm run viz
+
+## setup: Install development dependencies
+setup:
+	@echo "==> Installing Node.js dependencies..."
+	npm install --silent
+
+## clean: Remove all generated artifacts (compiler and checker output)
+clean:
+	@echo "==> Cleaning up..."
+	rm -rf $(GEN_DIR)
+	rm -rf $(OUTPUT_DIR)
+	@echo "Cleaned."
