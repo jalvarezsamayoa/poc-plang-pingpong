@@ -33,7 +33,7 @@ Ensure the following are installed on your system:
 ├── PSpecs/              # Formal specifications and test drivers
 │   ├── SystemTests.p    # Main entry point for the model
 │   └── LivenessMonitor.p# Liveness specification (hot states)
-├── scripts/             # Visualization utilities (Python/JS)
+├── scripts/             # Visualization utilities (TypeScript)
 ├── PingPong.pproj       # P Project configuration (XML)
 ├── Makefile             # Centralized command orchestration
 ├── package.json         # Node.js dependencies for XState

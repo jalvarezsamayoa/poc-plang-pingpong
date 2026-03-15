@@ -56,12 +56,12 @@ trace:
 mermaid:
 	@if [ -f PCheckerOutput/verbose.log ]; then \
 		echo "==> Exporting verbose log to Mermaid..."; \
-		python3 scripts/trace_to_mermaid.py PCheckerOutput/verbose.log > PCheckerOutput/trace.mermaid; \
+		npx ts-node scripts/trace_to_mermaid.ts PCheckerOutput/verbose.log > PCheckerOutput/trace.mermaid; \
 		echo "Created PCheckerOutput/trace.mermaid"; \
 	elif [ -f $$(ls $(OUTPUT_DIR)/BugFinding/*.trace.json 2>/dev/null | head -n 1) ]; then \
 		JSON_FILE=$$(ls $(OUTPUT_DIR)/BugFinding/*.trace.json 2>/dev/null | head -n 1); \
 		echo "==> Exporting bug JSON trace $$JSON_FILE to Mermaid..."; \
-		python3 scripts/trace_to_mermaid.py "$$JSON_FILE" > PCheckerOutput/trace.mermaid; \
+		npx ts-node scripts/trace_to_mermaid.ts "$$JSON_FILE" > PCheckerOutput/trace.mermaid; \
 		echo "Created PCheckerOutput/trace.mermaid"; \
 	else \
 		echo "Error: No trace found. Run 'make trace' or 'make check' first."; \
@@ -76,7 +76,7 @@ graph:
 		exit 1; \
 	fi; \
 	echo "==> Exporting state machines from $$SCI_FILE to Mermaid..."; \
-	python3 scripts/sci_to_mermaid.py $$SCI_FILE > PCheckerOutput/graph.mermaid; \
+	npx ts-node scripts/sci_to_mermaid.ts $$SCI_FILE > PCheckerOutput/graph.mermaid; \
 	echo "Created PCheckerOutput/graph.mermaid"
 
 ## compile-viz: Compile the project in stately mode to generate the visualization JSON (via npm)

@@ -2,6 +2,7 @@
   "name": "ppingpong",
   "version": "1.0.0",
   "description": "PingPong implemented in P with XState visualization support",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +17,10 @@
     "xstate": "^4.38.2"
   },
   "devDependencies": {
-    "@xstate/inspect": "^0.8.0"
+    "@types/node": "^25.5.0",
+    "@xstate/inspect": "^0.8.0",
+    "fast-xml-parser": "^5.5.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
