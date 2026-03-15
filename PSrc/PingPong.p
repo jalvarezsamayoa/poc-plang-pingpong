@@ -6,18 +6,16 @@ event Pong: int;
 
 // Define the Pinger machine - this machine sends ping messages
 machine Pinger {
-    // State machine variable: stores the identity of the Ponger machine we'll communicate with
-    var ponger: machine;
+    // State machine variable: stores the identity of the network machine we'll communicate through
+    var network: machine;
     var timer: machine;
     var sid: int;
 
     // Define the initial state of the Pinger machine (marked with 'start' keyword)
     start state Init {
-        // Entry action: runs when entering this state
-        // Parameter 'p' receives the Ponger machine's identity
-        entry (p: machine) {
-            // Store the reference to the Ponger machine in our state variable
-            ponger = p;
+        // Parameter 'n' receives the LossyNetwork machine's identity
+        entry (n: machine) {
+            network = n;
             sid = 0;
             timer = new Timer(this);
             goto PingState;
@@ -26,13 +24,11 @@ machine Pinger {
 
     // Define the PingState - this is where the machine stays while ping-ponging
     state PingState {
-        // Entry action: runs when entering this state
-        // Send a Ping event to the ponger machine, passing 'this' (the Pinger's identity) as the payload
         entry {
-            send ponger, Ping, (sender = this, sid = sid);
+            send network, Ping, (sender = this, sid = sid);
             send timer, TimerStart;
         }
-        // Event handler: when we receive a Pong event, transition back to PingState
+        // Event handler: when we receive a Pong event
         on Pong do (p_sid: int) {
             if (p_sid == sid) {
                 send timer, TimerStop;
@@ -47,13 +43,19 @@ machine Pinger {
 
 // Define the Ponger machine - this machine responds to ping messages
 machine Ponger {
+    var network: machine;
     var expectedSid: int;
 
     // Define the initial state of the Ponger machine (marked with 'start' keyword)
-    start state Wait {
-        entry {
+    start state Init {
+        entry (n: machine) {
+            network = n;
             expectedSid = 0;
+            goto Wait;
         }
+    }
+
+    state Wait {
         // Event handler: when we receive a Ping event, execute the 'do' action
         on Ping do (payload: (sender: machine, sid: int)) {
             if (payload.sid == expectedSid) {
@@ -64,8 +66,8 @@ machine Ponger {
                 // Duplicate Ping, just re-acknowledge
                 print format("Ponger: Received duplicate Ping({0}), re-acknowledging", payload.sid);
             }
-            // Send a Pong event back to the machine that sent us the Ping
-            send payload.sender, Pong, payload.sid;
+            // Send a Pong event back through the network
+            send network, Pong, payload.sid;
         }
     }
 }

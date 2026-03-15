@@ -8,8 +8,8 @@ machine Main {
             var pinger: machine;
             var network: machine;
 
-            ponger = new Ponger();
             network = new LossyNetwork();
+            ponger = new Ponger(network);
             pinger = new Pinger(network);
 
             // Configure the network to mediate between pinger and ponger
