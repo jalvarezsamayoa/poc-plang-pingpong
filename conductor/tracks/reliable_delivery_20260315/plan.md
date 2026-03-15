@@ -1,7 +1,7 @@
 # Implementation Plan: Reliable Delivery Protocol
 
 ## Phase 1: Environment Setup & Lossy Network
-- [ ] Task: Define a `LossyNetwork` machine that intercepts events between Pinger and Ponger.
+- [x] Task: Define a `LossyNetwork` machine that intercepts events between Pinger and Ponger. [254ebcf]
 - [ ] Task: Add a probability factor to `LossyNetwork` to drop events.
 - [ ] Task: Update `Main` machine to route traffic through the `LossyNetwork`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md)
