@@ -44,12 +44,12 @@ check:
 		exit 1; \
 	fi
 	@echo "==> Running P Checker..."
-	$(P_TOOL) check $(DLL_PATH)
+	$(P_TOOL) check $(DLL_PATH) -tc DefaultTest
 
 ## trace: Run a single schedule and capture a verbose log (even if no bugs found)
 trace:
 	@echo "==> Generating verbose trace log..."
-	$(P_TOOL) check $(DLL_PATH) -s 1 -v -ms 10 > PCheckerOutput/verbose.log 2>&1
+	$(P_TOOL) check $(DLL_PATH) -tc DefaultTest -s 1 -v -ms 10 > PCheckerOutput/verbose.log 2>&1
 	@echo "Log created: PCheckerOutput/verbose.log"
 
 ## mermaid: Export the trace to a Mermaid diagram (checks for log or JSON)

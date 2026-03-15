@@ -10,5 +10,8 @@ machine TestNetwork {
             // because it has no on Ping handler yet.
             send network, Ping, this;
         }
+        on Ping do {
+            // Received Ping back from network (if not dropped)
+        }
     }
 }
