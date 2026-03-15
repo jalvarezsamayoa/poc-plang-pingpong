@@ -6,12 +6,13 @@
 - [x] Task: Update `Main` machine to route traffic through the `LossyNetwork`. [e7f59d1]
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md) [bee79f8]
 
-## Phase 2: Reliable Protocol Logic
+## Phase 2: Reliable Protocol Logic [checkpoint: cd83fb2]
 - [x] Task: Update event definitions to include sequence numbers. [ecaf2e2]
 - [x] Task: Implement retransmission timers in the `Pinger` machine. [6097f25]
 - [x] Task: Implement acknowledgment logic in the `Ponger` machine. [ecd0ccb]
 - [x] Task: Add sequence number tracking to the `Ponger` to ignore duplicates. [ecd0ccb]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Reliable Protocol Logic' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Reliable Protocol Logic' (Protocol in workflow.md) [cd83fb2]
+
 
 ## Phase 3: Verification & Visualization
 - [ ] Task: Update `LivenessMonitor` to handle the new reliable delivery events.
