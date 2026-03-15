@@ -1,0 +1,20 @@
+# Implementation Plan: Reliable Delivery Protocol
+
+## Phase 1: Environment Setup & Lossy Network
+- [ ] Task: Define a `LossyNetwork` machine that intercepts events between Pinger and Ponger.
+- [ ] Task: Add a probability factor to `LossyNetwork` to drop events.
+- [ ] Task: Update `Main` machine to route traffic through the `LossyNetwork`.
+- [ ] Task: Conductor - User Manual Verification 'Phase 1: Environment Setup & Lossy Network' (Protocol in workflow.md)
+
+## Phase 2: Reliable Protocol Logic
+- [ ] Task: Update event definitions to include sequence numbers.
+- [ ] Task: Implement retransmission timers in the `Pinger` machine.
+- [ ] Task: Implement acknowledgment logic in the `Ponger` machine.
+- [ ] Task: Add sequence number tracking to the `Ponger` to ignore duplicates.
+- [ ] Task: Conductor - User Manual Verification 'Phase 2: Reliable Protocol Logic' (Protocol in workflow.md)
+
+## Phase 3: Verification & Visualization
+- [ ] Task: Update `LivenessMonitor` to handle the new reliable delivery events.
+- [ ] Task: Run `make check` to verify the model under lossy conditions.
+- [ ] Task: Run `make trace` and `make mermaid` to visualize a successful reliable delivery trace.
+- [ ] Task: Conductor - User Manual Verification 'Phase 3: Verification & Visualization' (Protocol in workflow.md)
