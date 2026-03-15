@@ -15,7 +15,7 @@
 
 
 ## Phase 3: Verification & Visualization
-- [~] Task: Update `LivenessMonitor` to handle the new reliable delivery events.
-- [ ] Task: Run `make check` to verify the model under lossy conditions.
+- [x] Task: Update `LivenessMonitor` to handle the new reliable delivery events. [176c19e]
+- [x] Task: Run `make check` to verify the model under lossy conditions. [176c19e]
 - [ ] Task: Run `make trace` and `make mermaid` to visualize a successful reliable delivery trace.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Verification & Visualization' (Protocol in workflow.md)
