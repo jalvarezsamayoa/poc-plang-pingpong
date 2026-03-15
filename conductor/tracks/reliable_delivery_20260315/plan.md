@@ -14,8 +14,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Reliable Protocol Logic' (Protocol in workflow.md) [cd83fb2]
 
 
-## Phase 3: Verification & Visualization
+## Phase 3: Verification & Visualization [checkpoint: 4a4e6c2]
 - [x] Task: Update `LivenessMonitor` to handle the new reliable delivery events. [176c19e]
 - [x] Task: Run `make check` to verify the model under lossy conditions. [176c19e]
-- [~] Task: Run `make trace` and `make mermaid` to visualize a successful reliable delivery trace.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Verification & Visualization' (Protocol in workflow.md)
+- [x] Task: Run `make trace` and `make mermaid` to visualize a successful reliable delivery trace. [4a4e6c2]
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Verification & Visualization' (Protocol in workflow.md) [4a4e6c2]
