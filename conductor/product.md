@@ -19,5 +19,7 @@ To provide a robust and formally verified demonstration of an asynchronous distr
 ## Key Features
 - **Pinger Machine**: A state machine that initiates and maintains communication loops.
 - **Ponger Machine**: A reactive state machine that responds to incoming stimuli.
+- **Reliable Delivery Protocol**: Sequence-number based acknowledgment and retransmission logic to handle message loss.
+- **Network Loss Simulation**: A proxy machine that non-deterministically drops events to verify system robustness.
 - **Liveness Verification**: Integrated monitoring to detect and prevent infinite execution cycles without progress.
 - **Visual Tooling**: Automated export of execution traces and state graphs to Mermaid and XState formats.
